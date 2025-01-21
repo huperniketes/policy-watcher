@@ -6,7 +6,7 @@ This project uses GitHub Issues to track bugs and feature requests. Please searc
 issues before filing new issues to avoid duplicates.  For new issues, file your bug or 
 feature request as a new Issue.
 
-For help and questions about using this project, please use the [issue tracker](https://github.com/microsoft/vscode-policy-watcher/issues).
+For help and questions about using this project, please use the [issue tracker](https://github.com/vscodium/policy-watcher/issues).
 
 ## Microsoft Support Policy  
 
