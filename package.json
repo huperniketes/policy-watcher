@@ -18,5 +18,11 @@
     "branches": [
       "main"
     ]
+  },
+  "devDependencies": {
+    "release-it": "^18.1.1"
+  },
+  "scripts": {
+    "release": "release-it --no-increment"
   }
 }
