@@ -17,9 +17,9 @@ template <typename T>
 class RegistryPolicy : public Policy
 {
 public:
-  RegistryPolicy(const std::string name, const std::string &productName, const DWORD regType)
+  RegistryPolicy(const std::string name, const std::string &vendorName, const std::string &productName, const DWORD regType)
       : Policy(name),
-        registryKey("Software\\Policies\\Microsoft\\" + productName),
+        registryKey("Software\\Policies\\" + vendorName + "\\" + productName),
         regType(regType) {}
 
   bool refresh()

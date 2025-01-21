@@ -7,8 +7,9 @@
 
 using namespace Napi;
 
-PolicyWatcher::PolicyWatcher(std::string productName, const Function &okCallback)
+PolicyWatcher::PolicyWatcher(std::string vendorName, std::string productName, const Function &okCallback)
     : AsyncProgressQueueWorker(okCallback),
+      vendorName(vendorName),
       productName(productName)
 {
 }

@@ -4,14 +4,3 @@
  *--------------------------------------------------------------------------------------------*/
 
 exports.createWatcher = require('bindings')('vscode-policy-watcher');
-
-if (require.main === module) {
-  exports.createWatcher(
-    'CodeOSS',
-    {
-      UpdateMode: { type: 'string' },
-      SCMInputFontSize: { type: 'number' },
-    },
-    msg => console.log(msg)
-  );
-}

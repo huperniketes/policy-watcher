@@ -7,8 +7,8 @@
 
 using namespace Napi;
 
-StringPolicy::StringPolicy(const std::string name, const std::string &productName)
-    : RegistryPolicy(name, productName, REG_SZ) {}
+StringPolicy::StringPolicy(const std::string name, const std::string &vendorName, const std::string &productName)
+    : RegistryPolicy(name, vendorName, productName, REG_SZ) {}
 
 std::string StringPolicy::parseRegistryValue(LPBYTE buffer, DWORD bufferSize) const
 {

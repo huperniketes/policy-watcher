@@ -9,7 +9,7 @@
 const createWatcher = require("@vscodium/policy-watcher");
 
 createWatcher(
-  // domain name
+  // vendor name
   "VSCodium",
   // product name
   "VSCodium",

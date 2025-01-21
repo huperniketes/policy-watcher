@@ -25,6 +25,7 @@ export type PolicyUpdate<T extends Policies> = {
 };
 
 export function createWatcher<T extends Policies>(
+  vendorName: string,
   productName: string,
   policies: T,
   onDidChange: (update: PolicyUpdate<T>) => void

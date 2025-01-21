@@ -15,7 +15,7 @@ using namespace Napi;
 class NumberPolicy : public RegistryPolicy<long long>
 {
 public:
-  NumberPolicy(const std::string name, const std::string &productName);
+  NumberPolicy(const std::string name, const std::string &vendorName, const std::string &productName);
 
 protected:
   long long parseRegistryValue(LPBYTE buffer, DWORD bufferSize) const;
