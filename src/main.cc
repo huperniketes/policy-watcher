@@ -22,7 +22,7 @@ Value CreateWatcher(const CallbackInfo &info)
 {
   auto env = info.Env();
 
-#ifndef WINDOWS
+#if !defined(WINDOWS) && !defined(MACOS)
   throw TypeError::New(env, "Unsupported platform");
 #endif
 
@@ -57,18 +57,23 @@ Value CreateWatcher(const CallbackInfo &info)
 
     auto policyType = std::string(rawPolicyType.As<String>());
 
-    if (policyType == "string")
+    if (policyType == "string") {
       watcher->AddStringPolicy(rawPolicyName.As<String>());
-    else if (policyType == "number")
+    }
+    else if (policyType == "number") {
       watcher->AddNumberPolicy(rawPolicyName.As<String>());
-    else
+    } else if (policyType == "boolean") {
+      watcher->AddBooleanPolicy(rawPolicyName.As<String>());
+    } else {
       throw TypeError::New(env, "Unknown policy type '" + policyType + "'");
+    }
   }
 
   watcher->Queue();
 
   auto result = Object::New(env);
   result.Set(String::New(env, "dispose"), Function::New(env, DisposeWatcher, "disposeWatcher", watcher));
+
   return result;
 }
 

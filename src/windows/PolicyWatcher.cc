@@ -8,6 +8,7 @@
 #include "../PolicyWatcher.hh"
 #include "StringPolicy.hh"
 #include "NumberPolicy.hh"
+#include "BooleanPolicy.hh"
 
 using namespace Napi;
 
@@ -38,6 +39,11 @@ void PolicyWatcher::AddNumberPolicy(const std::string name)
   policies.push_back(std::make_unique<NumberPolicy>(name, vendorName, productName));
 }
 
+void PolicyWatcher::AddBooleanPolicy(const std::string name)
+{
+  policies.push_back(std::make_unique<BooleanPolicy>(name, productName));
+}
+
 void PolicyWatcher::OnExecute(Napi::Env env)
 {
   if ((handles[0] = CreateEvent(NULL, false, false, NULL)) == NULL)
@@ -64,15 +70,26 @@ void PolicyWatcher::Execute(const ExecutionProgress &progress)
   {
     std::vector<const Policy *> updatedPolicies;
 
+    bool update = false;
+    updatedPolicies.clear();
     for (auto &policy : policies)
     {
-      if (policy->refresh())
+      switch (policy->refresh())
       {
+      case PolicyRefreshResult::Updated:
         updatedPolicies.push_back(policy.get());
+        update = true;
+        break;
+      case PolicyRefreshResult::Unchanged:
+        updatedPolicies.push_back(policy.get());
+        break;
+      case PolicyRefreshResult::Removed:
+        update = true;
+        break;
       }
     }
 
-    if (first || updatedPolicies.size() > 0)
+    if (first || update)
       progress.Send(&updatedPolicies[0], updatedPolicies.size());
 
     first = false;

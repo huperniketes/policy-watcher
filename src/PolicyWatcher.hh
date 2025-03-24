@@ -14,6 +14,11 @@
 #include <windows.h>
 #endif
 
+#ifdef MACOS
+#define Boolean CFBoolean
+#include <CoreServices/CoreServices.h>
+#endif
+
 using namespace Napi;
 
 class PolicyWatcher : public AsyncProgressQueueWorker<const Policy *>
@@ -24,6 +29,7 @@ public:
 
   void AddStringPolicy(const std::string name);
   void AddNumberPolicy(const std::string name);
+  void AddBooleanPolicy(const std::string name);
 
   void OnExecute(Napi::Env env);
   void Execute(const ExecutionProgress &progress);
@@ -38,6 +44,13 @@ protected:
 #ifdef WINDOWS
   HANDLE handles[4];
 #endif
+
+#ifdef MACOS
+  FSEventStreamRef stream;
+  dispatch_semaphore_t sem;
+  bool disposed;
+#endif
+
 };
 
 #endif
