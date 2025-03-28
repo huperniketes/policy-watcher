@@ -22,7 +22,10 @@
                     ],
                     "defines": [
                         "MACOS",
-                    ]
+                    ],
+                    "variables": {
+                        "cxx": "clang++"
+                    }
                 }],
                 ['OS=="mac" and target_arch=="arm64"', {
                     "xcode_settings": {
