@@ -1,7 +1,7 @@
 {
     "targets": [
         {
-            "target_name": "vscode-policy-watcher",
+            "target_name": "vscodium-policy-watcher",
             "sources": [
                 "src/main.cc"
             ],
