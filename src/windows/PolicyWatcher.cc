@@ -41,7 +41,7 @@ void PolicyWatcher::AddNumberPolicy(const std::string name)
 
 void PolicyWatcher::AddBooleanPolicy(const std::string name)
 {
-  policies.push_back(std::make_unique<BooleanPolicy>(name, productName));
+  policies.push_back(std::make_unique<BooleanPolicy>(name, vendorName, productName));
 }
 
 void PolicyWatcher::OnExecute(Napi::Env env)
