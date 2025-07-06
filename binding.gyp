@@ -23,6 +23,7 @@
                     "defines": [
                         "MACOS",
                     ],
+			"cxxflags": [ "-std=c++17" ],
                     "variables": {
                         "cxx": "clang++"
                     }
